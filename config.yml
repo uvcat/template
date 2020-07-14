@@ -1,0 +1,40 @@
+# 这里所有选项都是可选的。
+uvcat: #全局的选项
+  webURL: https://uvcat.com
+  appName: uvcat
+pouchdb:
+  name: uvcat
+documentation: #文档相关选项
+  name: uvcat
+auth: #登录相关选项
+  cookiePassword: secret
+content-manager:
+  types: #定义后台管理显示的类型
+    user: #用户
+      permissions: #权限控制，这里的权限只提供最简单的读写控制。如果需要复杂的逻辑，需要自行开发插件。
+        read: [ '_admin' ]
+        write: [ '_admin' ]
+      fields: #定义显示的字段
+        name: 
+          type: string
+        nickName:
+          type: string
+        roles:
+          type: array
+      indexes: ['name'] #这里定义索引，带索引的字段可以进行排序、查询
+    oauth: #第三方登录的用户
+      permissions:
+        read: [ '_admin' ]
+        write: [ '_admin' ]
+      fields:
+        provider:
+          type: string
+        accessToken:
+          type: string
+        user:
+          type: pointer #指针类型
+          target: user
+        
+
+
+    
